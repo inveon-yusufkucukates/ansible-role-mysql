@@ -1,0 +1,33 @@
+---
+- name: Configure MySQL Primary Server
+  hosts: mysql_primary
+  become: true
+  roles:
+    - role: ansible-role-mysql
+      vars:
+        mysql_root_password: "rootpassword"
+        mysql_databases:
+          - name: testdb
+            encoding: utf8mb4
+            collation: utf8mb4_unicode_ci
+        mysql_users:
+          - name: testuser
+            password: "testpassword"
+            priv: "testdb.*:ALL"
+        mysql_replication_role: "master"
+        mysql_replication_user:
+          name: "repl"
+          password: "replpassword"
+
+- name: Configure MySQL Replica Server
+  hosts: mysql_replica
+  become: true
+  roles:
+    - role: ansible-role-mysql
+      vars:
+        mysql_root_password: "rootpassword"
+        mysql_replication_role: "slave"
+        mysql_replication_master: "192.168.56.10"
+        mysql_replication_user:
+          name: "repl"
+          password: "replpassword" 

@@ -1,0 +1,9 @@
+---
+- name: MySQL kurulumu (db, etl, replica)
+  hosts:
+    - db
+    - etl
+    - replica
+  become: true
+  roles:
+    - role: ansible-role-mysql 
