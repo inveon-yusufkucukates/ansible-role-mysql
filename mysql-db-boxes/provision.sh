@@ -10,7 +10,7 @@ INVENTORY_PATH="${BASE_SOURCE_PATH}/mysql-db-boxes/inventories/${ENVIRONMENT}/${
 PLAYBOOK_PATH="${BASE_SOURCE_PATH}/mysql-db-boxes/playbooks/playbook.yml"
 ANSIBLE_CONFIG="${BASE_SOURCE_PATH}/mysql-db-boxes/inventories/${ENVIRONMENT}/${CLUSTER_SLUG}/${CUSTOMER_SLUG}/ansible.cfg"
 
-export ANSIBLE_CONFIG
+export ANSIBLE_CONFIG=/vagrant/mysql-db-boxes/inventories/vagrant/cluster1/customer1/ansible.cfg
 
 apt-get update
 apt-get install -y software-properties-common
